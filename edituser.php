@@ -39,7 +39,7 @@
       </select><br>
 
       <label for="about">About Your self : </label><br>
-      <textarea name="about" id="about" cols="30" rows="10"></textarea><br>
+      <textarea name="about" id="about" cols="30" rows="10"> <?php echo $rows['about']; ?></textarea><br>
       <button type="button" onclick="submitData('edit');">Edit</button>
     </form>
     <br>
