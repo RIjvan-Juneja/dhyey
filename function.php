@@ -8,7 +8,7 @@ if(isset($_POST["action"])){
   else if($_POST["action"] == "edit"){
     edit();
   }
-  else{
+  else if($_POST["action"] == "delete"){
     delete();
   }
 }
@@ -19,8 +19,11 @@ function insert(){
   $name = $_POST["name"];
   $email = $_POST["email"];
   $gender = $_POST["gender"];
+  $hobbies = implode(', ', $_POST["hobbies"]); // Convert hobbies array to a comma-separated string
+  $interests = implode(', ', $_POST["interests"]); // Convert interests array to a comma-separated string
+  $about = $_POST["about"];
 
-  $query = "INSERT INTO users VALUES('', '$name', '$email', '$gender')";
+  $query = "INSERT INTO users (name, email, gender, hobbies, interests, about) VALUES ('$name', '$email', '$gender', '$hobbies', '$interests', '$about')";
   mysqli_query($conn, $query);
   echo "Inserted Successfully";
 }
@@ -32,8 +35,11 @@ function edit(){
   $name = $_POST["name"];
   $email = $_POST["email"];
   $gender = $_POST["gender"];
+  $hobbies = implode(', ', $_POST["hobbies"]); // Convert hobbies array to a comma-separated string
+  $interests = implode(', ', $_POST["interests"]); // Convert interests array to a comma-separated string
+  $about = $_POST["about"];
 
-  $query = "UPDATE users SET name = '$name', email = '$email', gender = '$gender' WHERE id = $id";
+  $query = "UPDATE users SET name = '$name', email = '$email', gender = '$gender', hobbies = '$hobbies', interests = '$interests', about = '$about' WHERE id = $id";
   mysqli_query($conn, $query);
   echo "Updated Successfully";
 }
@@ -41,9 +47,10 @@ function edit(){
 function delete(){
   global $conn;
 
-  $id = $_POST["action"];
+  $id = $_POST["id"];
 
   $query = "DELETE FROM users WHERE id = $id";
   mysqli_query($conn, $query);
   echo "Deleted Successfully";
 }
+?>
