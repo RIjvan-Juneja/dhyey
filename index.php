@@ -61,6 +61,26 @@ if (isset($_GET['search'])) {
 } else {
   // Display all records if no search query is provided
   $sql = "SELECT * FROM users";
+  require 'config.php';
+  $results = $conn -> query($sql);
+  $results -> num_rows; 
+  $i = 1;
+  foreach($results as $row) : ?>
+    <tr id = <?php echo $row["id"]; ?>>
+      <td><?php echo $i++; ?></td>
+      <td><?php echo $row["name"]; ?></td>
+      <td><?php echo $row["email"]; ?></td>
+      <td><?php echo $row["gender"]; ?></td>
+      <td><?php echo $row["hobbies"]; ?></td>
+      <td><?php echo $row["interests"]; ?></td>
+      <td><?php echo $row["about"]; ?></td>
+      <td>
+        <a href="edituser.php?id=<?php echo $row['id']; ?>">Edit</a>
+        <button type="button" onclick = "submitData(<?php echo $row['id']; ?>);">Delete</button>
+      </td>
+    </tr>
+    <?php endforeach; ?>
+  </table><?php
   // Execute the query and display all records
 }
 
