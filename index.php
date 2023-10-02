@@ -12,6 +12,9 @@
         <td>Name</td>
         <td>Email</td>
         <td>Gender</td>
+        <td>Hobbies</td>
+        <td>Interests</td>
+        <td>About</td>
         <td>Action</td>
       </tr>
       <?php
@@ -25,6 +28,9 @@
         <td><?php echo $row["name"]; ?></td>
         <td><?php echo $row["email"]; ?></td>
         <td><?php echo $row["gender"]; ?></td>
+        <td><?php echo $row["hobbies"]; ?></td>
+        <td><?php echo $row["interests"]; ?></td>
+        <td><?php echo $row["about"]; ?></td>
         <td>
           <a href="edituser.php?id=<?php echo $row['id']; ?>">Edit</a>
           <button type="button" onclick = "submitData(<?php echo $row['id']; ?>);">Delete</button>
